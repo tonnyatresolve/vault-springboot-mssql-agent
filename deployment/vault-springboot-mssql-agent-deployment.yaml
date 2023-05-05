@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vault-springboot-mssql-agent
+  namespace: vault-springboot-rotation-test
+  labels:
+    app: vault-springboot-mssql-agent
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vault-springboot-mssql-agent
+  template:
+    metadata:
+      labels:
+        app: vault-springboot-mssql-agent
+    spec:
+      containers:
+      - name: vault-springboot-mssql-agent
+        image: givenreslvtech/vault-springboot-mssql-agent:v1.0
+        ports:
+        - containerPort: 8080
+        env:
+        - name: MSSQL_DB_USERNAME
+          value: "app-test"
+        - name: MSSQL_DB_PASSWORD
+          value: "qmC2uHGkoPRqG61m-6YE"
